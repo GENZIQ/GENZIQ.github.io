@@ -57,7 +57,7 @@ We welcome collaboration and thoughtful contributions. Please open an issue or s
 
 - Organization: GENZIQ
 - GitHub: https://github.com/GENZIQ
-
+- anushree1888@gmail.com
 ## License
 
 This repository does not currently specify a license. Add one if you want to define usage and redistribution terms for contributors and users.
