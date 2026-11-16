@@ -1,12 +1,4 @@
 
-> published git history — force pushing, or rebasing/amending/squashing commits
-> that are already pushed — as it rewrites history on Lovable's side and the
-> user will likely lose their project history.
->
-> Commits you push to the connected branch sync back to Lovable and show up in
-> the editor, so keep the branch in a working state.
-
-
 ## Project rules
 
 - The whole site is one persistent 3D world (`src/components/universe/`) mounted client-only in `__root.tsx`; each page is a "station" in `stations.ts` and the camera flies between them on navigation. Add a new page by adding a station + its scene object, so the world stays coherent.
