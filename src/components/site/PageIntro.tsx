@@ -17,7 +17,7 @@ export function PageIntro({
   return (
     <section className="relative flex min-h-[100svh] items-center px-4 pb-16 pt-32 md:px-6">
       <div className="mx-auto w-full max-w-6xl">
-        <div className="max-w-xl">
+        <div className="page-intro-copy max-w-xl">
           <p className="eyebrow animate-rise">{eyebrow}</p>
           <h1 className="animate-rise mt-5 text-4xl font-semibold leading-[1.05] sm:text-5xl md:text-6xl" style={{ animationDelay: "80ms" }}>
             {title}

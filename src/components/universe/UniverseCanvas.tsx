@@ -752,7 +752,7 @@ export default function Universe({ stationId }: { stationId: StationId }) {
 
   return (
     <div
-      className="fixed inset-0 -z-10 transition-opacity duration-1000"
+      className="universe-scene fixed inset-0 -z-10 transition-opacity duration-1000"
       style={{ opacity: ready ? 1 : 0 }}
       data-scene-ready={ready ? "true" : undefined}
       aria-hidden

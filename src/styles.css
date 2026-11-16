@@ -808,6 +808,23 @@
   animation: bubble-pop 0.45s cubic-bezier(0.3, 1.6, 0.5, 1) both;
   margin-bottom: 2.6rem;
 }
+
+@media (max-width: 767px) {
+  .universe-scene canvas {
+    opacity: 0.24;
+  }
+
+  .page-intro-copy {
+    padding: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 1.5rem;
+    background: color-mix(in oklab, var(--background) 84%, transparent);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: var(--shadow-panel);
+  }
+}
+
 @keyframes bubble-pop {
   from {
     opacity: 0;
