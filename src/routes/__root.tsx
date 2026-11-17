@@ -19,6 +19,7 @@ import { ScrollProgress } from "@/components/site/ScrollProgress";
 import { ZiqBuddy } from "@/components/site/ZiqBuddy";
 import { UniverseMount } from "@/components/universe/UniverseMount";
 import { Toaster } from "@/components/ui/sonner";
+import { SITE } from "@/lib/site";
 
 function NotFoundComponent() {
   return (
@@ -91,6 +92,26 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:description", content: "A new technology company exploring applied intelligence and immersive software." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: SITE.name,
+          url: SITE.url,
+          description:
+            "GENZIQ is an early-stage technology company exploring applied AI, software, and immersive web experiences.",
+          email: SITE.email,
+          sameAs: [SITE.github],
+          founder: {
+            "@type": "Person",
+            name: SITE.founder.name,
+            url: SITE.founder.linkedin,
+          },
+        }),
+      },
     ],
     links: [
       { rel: "stylesheet", href: appCss },

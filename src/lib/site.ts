@@ -1,5 +1,6 @@
 export const SITE = {
   name: "GENZIQ",
+  url: "https://genziq.io",
   tagline: "Intelligence. Innovation. Infinite Possibilities.",
   email: "anushree1888@gmail.com",
   github: "https://github.com/GENZIQ",
