@@ -107,12 +107,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           url: SITE.url,
           description:
             "GENZIQ is an early-stage technology company exploring applied AI, software, and immersive web experiences.",
+          foundingDate: SITE.foundingYear,
           email: SITE.email,
           sameAs: [SITE.github],
           founder: {
             "@type": "Person",
             name: SITE.founder.name,
             url: SITE.founder.linkedin,
+            sameAs: [SITE.founder.linkedin],
           },
         }),
       },

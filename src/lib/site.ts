@@ -1,11 +1,12 @@
 export const SITE = {
   name: "GENZIQ",
   url: "https://genziq.io",
+  foundingYear: "2026",
   tagline: "Intelligence. Innovation. Infinite Possibilities.",
   email: "anushree1888@gmail.com",
   github: "https://github.com/GENZIQ",
   founder: {
-    name: "Anu Shree",
+    name: "Anushree",
     role: "Founder",
     linkedin: "https://www.linkedin.com/in/anushree-n-488756238",
   },

@@ -80,10 +80,11 @@ function About() {
               <span className="text-chrome">{SITE.founder.name}</span>
             </h2>
             <p className="mt-2 font-mono text-xs uppercase tracking-widest text-muted-foreground">
-              {SITE.founder.role} · GENZIQ
+              {SITE.founder.role} · GENZIQ · Founded {SITE.foundingYear}
             </p>
             <p className="mt-5 max-w-xl text-sm leading-relaxed text-muted-foreground">
-              GENZIQ started with one person and one idea. You can follow the work as it happens.
+              Founded in {SITE.foundingYear} by {SITE.founder.name}, GENZIQ began with one
+              person and one idea. Follow the work as it happens.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Button asChild variant="glass" size="lg">
