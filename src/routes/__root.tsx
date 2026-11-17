@@ -87,6 +87,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "GENZIQ — Intelligence. Innovation. Infinite Possibilities." },
       { name: "description", content: "GENZIQ is a new technology company exploring applied intelligence and immersive software." },
       { name: "author", content: "GENZIQ" },
+      {
+        name: "google-site-verification",
+        content: "NZAVSOMUm0VUQRpLGNsMtYrNVCQ6N5LGp5us2rhGDg4",
+      },
       { name: "theme-color", content: "#04060d" },
       { property: "og:title", content: "GENZIQ" },
       { property: "og:description", content: "A new technology company exploring applied intelligence and immersive software." },
