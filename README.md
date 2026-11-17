@@ -23,15 +23,15 @@ npm run preview
 
 ## Deployment
 
-The site can be deployed on Vercel. Import `GENZIQ/genziq` in Vercel and use
-the default build settings; Vercel assigns a free `*.vercel.app` subdomain.
-Pushes to the connected branch trigger new deployments.
+This repository deploys a prerendered static version to GitHub Pages from
+`main` using `.github/workflows/deploy-pages.yml`. The repository is named
+`GENZIQ.github.io`, so the default free site URL is
+[https://genziq.github.io](https://genziq.github.io).
 
-This repository also deploys a prerendered static version to GitHub Pages from
-`main` using `.github/workflows/deploy-pages.yml`. The Pages site is configured
-to use `genziq.io` as its custom domain. Point the domain's apex `A` records to
-`185.199.108.153`, `185.199.109.153`, `185.199.110.153`, and
-`185.199.111.153`. GitHub can issue the HTTPS certificate after DNS resolves.
+In repository **Settings → Pages**, set the build and deployment source to
+**GitHub Actions** and clear any custom domain to use the default `github.io`
+URL. Pushes to `main` trigger deployments; the workflow can also be started
+manually from the Actions tab.
 
 ## Mission
 
