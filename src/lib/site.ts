@@ -3,13 +3,14 @@ export const SITE = {
   url: "https://genziq.io",
   foundingYear: "2026",
   tagline: "Intelligence. Innovation. Infinite Possibilities.",
-  email: "anushree1888@gmail.com",
+  email: "genziq.team@gmail.com",
+  linkedin: "https://www.linkedin.com/company/144165173/admin/dashboard/",
   github: "https://github.com/GENZIQ",
+  applicationForm: "",
   founder: {
     name: "Anushree",
     role: "Founder",
     linkedin: "https://www.linkedin.com/in/anushree-n-488756238",
   },
-  // GENZIQ is not hiring right now. Add role titles here when one opens.
-  openRoles: [] as string[],
+  openRoles: ["AI & ML Intern", "Python Developer Intern", "Full Stack Developer Intern"] as string[],
 };
