@@ -17,5 +17,12 @@ export function ScrollProgress() {
       window.removeEventListener("resize", update);
     };
   }, []);
-  return <div ref={bar} className="bg-iris pointer-events-none fixed inset-x-0 top-0 z-[70] h-0.5 origin-left" style={{ transform: "scaleX(0)" }} aria-hidden />;
+  return (
+    <div
+      ref={bar}
+      className="bg-iris pointer-events-none fixed inset-x-0 top-0 z-[70] h-0.5 origin-left"
+      style={{ transform: "scaleX(0)" }}
+      aria-hidden
+    />
+  );
 }

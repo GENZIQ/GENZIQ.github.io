@@ -19,7 +19,12 @@ export function CursorSparkles() {
     const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (!fine || calm) return;
 
-    let x = -400, y = -400, gx = x, gy = y, last = 0, raf = 0;
+    let x = -400,
+      y = -400,
+      gx = x,
+      gy = y,
+      last = 0,
+      raf = 0;
     const onMove = (e: PointerEvent) => {
       x = e.clientX;
       y = e.clientY;
@@ -37,7 +42,8 @@ export function CursorSparkles() {
     const tick = () => {
       gx += (x - gx) * 0.14;
       gy += (y - gy) * 0.14;
-      if (glow.current) glow.current.style.transform = `translate3d(${gx - 160}px, ${gy - 160}px, 0)`;
+      if (glow.current)
+        glow.current.style.transform = `translate3d(${gx - 160}px, ${gy - 160}px, 0)`;
       raf = requestAnimationFrame(tick);
     };
     window.addEventListener("pointermove", onMove, { passive: true });

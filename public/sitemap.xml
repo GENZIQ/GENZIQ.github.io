@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://genziq.io/</loc></url>
-  <url><loc>https://genziq.io/about</loc></url>
-  <url><loc>https://genziq.io/products</loc></url>
-  <url><loc>https://genziq.io/innovation</loc></url>
-  <url><loc>https://genziq.io/careers</loc></url>
-  <url><loc>https://genziq.io/contact</loc></url>
+  <url><loc>https://genziq.in/</loc><priority>1.0</priority></url>
+  <url><loc>https://genziq.in/about</loc><priority>0.9</priority></url>
+  <url><loc>https://genziq.in/services</loc><priority>0.9</priority></url>
+  <url><loc>https://genziq.in/products</loc><priority>0.8</priority></url>
+  <url><loc>https://genziq.in/innovation</loc><priority>0.8</priority></url>
+  <url><loc>https://genziq.in/careers</loc><priority>0.9</priority></url>
+  <url><loc>https://genziq.in/partnerships</loc><priority>0.8</priority></url>
+  <url><loc>https://genziq.in/contact</loc><priority>0.8</priority></url>
+  <url><loc>https://genziq.in/privacy</loc><priority>0.5</priority></url>
+  <url><loc>https://genziq.in/terms</loc><priority>0.5</priority></url>
 </urlset>

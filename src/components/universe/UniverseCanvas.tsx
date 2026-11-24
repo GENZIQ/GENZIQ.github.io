@@ -107,7 +107,10 @@ function CameraRig({ stationId }: { stationId: StationId }) {
     desired.x += pointer.x * 0.6;
     desired.y += pointer.y * 0.4;
 
-    lookTarget.set(shift, -sc * 0.25, 0).applyAxisAngle(UP, yaw).add(p);
+    lookTarget
+      .set(shift, -sc * 0.25, 0)
+      .applyAxisAngle(UP, yaw)
+      .add(p);
 
     prev.copy(camera.position);
     camera.position.lerp(desired, 1 - Math.exp(-1.8 * dt));
@@ -216,7 +219,10 @@ function Comets() {
       const m = refs.current[i];
       if (!m) return;
       const p = (t * s.speed + s.phase) % 1;
-      m.position.copy(camera.position).add(s.off).addScaledVector(dir, (p - 0.5) * 90);
+      m.position
+        .copy(camera.position)
+        .add(s.off)
+        .addScaledVector(dir, (p - 0.5) * 90);
       (m.material as THREE.MeshBasicMaterial).opacity = Math.sin(p * Math.PI) * 0.9;
     });
   });
@@ -224,9 +230,22 @@ function Comets() {
   return (
     <>
       {seeds.map((s, i) => (
-        <mesh key={i} ref={(el) => { refs.current[i] = el; }} rotation={[0, 0, rot]}>
+        <mesh
+          key={i}
+          ref={(el) => {
+            refs.current[i] = el;
+          }}
+          rotation={[0, 0, rot]}
+        >
           <boxGeometry args={[3.2, 0.025, 0.025]} />
-          <meshBasicMaterial color={s.color} transparent opacity={0} toneMapped={false} blending={THREE.AdditiveBlending} depthWrite={false} />
+          <meshBasicMaterial
+            color={s.color}
+            transparent
+            opacity={0}
+            toneMapped={false}
+            blending={THREE.AdditiveBlending}
+            depthWrite={false}
+          />
         </mesh>
       ))}
     </>
@@ -235,7 +254,15 @@ function Comets() {
 
 /* ------------------------------------------------------- station 01: orbit */
 
-function Sparkle({ position, size = 1, color = C.pearl }: { position: [number, number, number]; size?: number; color?: string }) {
+function Sparkle({
+  position,
+  size = 1,
+  color = C.pearl,
+}: {
+  position: [number, number, number];
+  size?: number;
+  color?: string;
+}) {
   const ref = useRef<THREE.Group>(null);
   useFrame(({ clock }) => {
     if (!ref.current) return;
@@ -295,13 +322,17 @@ function OrbitalCore() {
     if (ringWrap.current) ringWrap.current.scale.setScalar(0.001 + eRing * 0.999);
 
     if (group.current) {
-      group.current.rotation.y += (pointer.x * 0.55 + Math.sin(t * 0.35) * 0.35 - group.current.rotation.y) * k;
-      group.current.rotation.x += (-pointer.y * 0.35 + Math.sin(t * 0.25) * 0.08 - group.current.rotation.x) * k;
+      group.current.rotation.y +=
+        (pointer.x * 0.55 + Math.sin(t * 0.35) * 0.35 - group.current.rotation.y) * k;
+      group.current.rotation.x +=
+        (-pointer.y * 0.35 + Math.sin(t * 0.25) * 0.08 - group.current.rotation.x) * k;
     }
     if (ring.current) ring.current.rotation.z = t * 0.3;
     if (halo.current) halo.current.rotation.z = -t * 0.12;
-    if (moon.current) moon.current.position.set(Math.cos(t * 0.9) * 2.55, Math.sin(t * 0.9) * 2.55, 0);
-    if (moon2.current) moon2.current.position.set(Math.cos(-t * 0.5 + 2) * 3.1, Math.sin(-t * 0.5 + 2) * 3.1, 0);
+    if (moon.current)
+      moon.current.position.set(Math.cos(t * 0.9) * 2.55, Math.sin(t * 0.9) * 2.55, 0);
+    if (moon2.current)
+      moon2.current.position.set(Math.cos(-t * 0.5 + 2) * 3.1, Math.sin(-t * 0.5 + 2) * 3.1, 0);
   });
 
   return (
@@ -316,7 +347,14 @@ function OrbitalCore() {
           </group>
           <mesh ref={bar} position={[0.62, -0.02, 0]} rotation={[0, 0, -0.18]}>
             <boxGeometry args={[1.25, 0.5, 0.62]} />
-            <meshPhysicalMaterial color={C.iris} {...IRIDESCENT} metalness={0.65} roughness={0.22} emissive={C.iris} emissiveIntensity={0.35} />
+            <meshPhysicalMaterial
+              color={C.iris}
+              {...IRIDESCENT}
+              metalness={0.65}
+              roughness={0.22}
+              emissive={C.iris}
+              emissiveIntensity={0.35}
+            />
           </mesh>
 
           <group ref={ringWrap}>
@@ -324,7 +362,12 @@ function OrbitalCore() {
               <group ref={ring}>
                 <mesh>
                   <torusGeometry args={[2.55, 0.035, 16, 260]} />
-                  <meshStandardMaterial color={C.orchid} emissive={C.iris} emissiveIntensity={2.4} toneMapped={false} />
+                  <meshStandardMaterial
+                    color={C.orchid}
+                    emissive={C.iris}
+                    emissiveIntensity={2.4}
+                    toneMapped={false}
+                  />
                 </mesh>
                 <mesh ref={moon}>
                   <sphereGeometry args={[0.11, 24, 24]} />
@@ -334,7 +377,12 @@ function OrbitalCore() {
               <group ref={halo} rotation={[0, 0, 0.6]}>
                 <mesh>
                   <torusGeometry args={[3.1, 0.014, 8, 260]} />
-                  <meshStandardMaterial color={C.aurora} emissive={C.aurora} emissiveIntensity={1.2} toneMapped={false} />
+                  <meshStandardMaterial
+                    color={C.aurora}
+                    emissive={C.aurora}
+                    emissiveIntensity={1.2}
+                    toneMapped={false}
+                  />
                 </mesh>
                 <mesh ref={moon2}>
                   <sphereGeometry args={[0.07, 16, 16]} />
@@ -348,8 +396,22 @@ function OrbitalCore() {
           <Sparkle position={[-2.4, -1.4, -0.6]} size={0.45} color={C.aurora} />
         </group>
       </Float>
-      <Sparkles count={80} scale={[10, 6, 6]} size={2.4} speed={0.35} color={C.champagne} opacity={0.7} />
-      <Sparkles count={50} scale={[8, 5, 5]} size={1.6} speed={0.5} color={C.aurora} opacity={0.6} />
+      <Sparkles
+        count={80}
+        scale={[10, 6, 6]}
+        size={2.4}
+        speed={0.35}
+        color={C.champagne}
+        opacity={0.7}
+      />
+      <Sparkles
+        count={50}
+        scale={[8, 5, 5]}
+        size={1.6}
+        speed={0.5}
+        color={C.aurora}
+        opacity={0.6}
+      />
     </group>
   );
 }
@@ -382,26 +444,109 @@ function OriginSeed() {
     <group position={getStation("about").position}>
       <mesh ref={core}>
         <icosahedronGeometry args={[0.32, 3]} />
-        <meshStandardMaterial color={C.pearl} emissive={C.orchid} emissiveIntensity={3} toneMapped={false} />
+        <meshStandardMaterial
+          color={C.pearl}
+          emissive={C.orchid}
+          emissiveIntensity={3}
+          toneMapped={false}
+        />
       </mesh>
       <mesh ref={shell}>
         <icosahedronGeometry args={[0.75, 1]} />
-        <meshBasicMaterial color={C.champagne} wireframe transparent opacity={0.35} toneMapped={false} />
+        <meshBasicMaterial
+          color={C.champagne}
+          wireframe
+          transparent
+          opacity={0.35}
+          toneMapped={false}
+        />
       </mesh>
       <group ref={rings}>
         {Array.from({ length: RINGS }).map((_, i) => (
           <mesh key={i}>
             <torusGeometry args={[1, 0.009, 8, 180]} />
-            <meshBasicMaterial color={tones[i % tones.length] ?? C.orchid} transparent opacity={0.6} toneMapped={false} />
+            <meshBasicMaterial
+              color={tones[i % tones.length] ?? C.orchid}
+              transparent
+              opacity={0.6}
+              toneMapped={false}
+            />
           </mesh>
         ))}
       </group>
-      <Sparkles count={140} scale={[8, 8, 8]} size={2.6} speed={0.5} color={C.champagne} opacity={0.8} />
+      <Sparkles
+        count={140}
+        scale={[8, 8, 8]}
+        size={2.6}
+        speed={0.5}
+        color={C.champagne}
+        opacity={0.8}
+      />
     </group>
   );
 }
 
-/* --------------------------------------------------- station 03: blueprint */
+/* ------------------------------------------------- station 03: services */
+
+function ServicesMatrix() {
+  const core = useRef<THREE.Mesh>(null);
+  const ring1 = useRef<THREE.Mesh>(null);
+  const ring2 = useRef<THREE.Mesh>(null);
+  useFrame(({ clock }) => {
+    const t = clock.elapsedTime;
+    if (core.current) {
+      core.current.rotation.x = t * 0.3;
+      core.current.rotation.y = t * 0.45;
+    }
+    if (ring1.current) ring1.current.rotation.set(Math.PI / 4, t * 0.5, 0);
+    if (ring2.current) ring2.current.rotation.set(-Math.PI / 4, 0, -t * 0.5);
+  });
+  return (
+    <group position={getStation("services").position}>
+      <Float speed={1.3} rotationIntensity={0.3} floatIntensity={0.7}>
+        <mesh ref={core}>
+          <octahedronGeometry args={[1.1, 0]} />
+          <meshPhysicalMaterial
+            color={C.iris}
+            {...IRIDESCENT}
+            roughness={0.12}
+            emissive={C.deep}
+            emissiveIntensity={0.6}
+          />
+        </mesh>
+        <mesh ref={ring1}>
+          <torusGeometry args={[1.8, 0.03, 16, 120]} />
+          <meshStandardMaterial
+            color={C.champagne}
+            emissive={C.champagne}
+            emissiveIntensity={1.8}
+            toneMapped={false}
+          />
+        </mesh>
+        <mesh ref={ring2}>
+          <torusGeometry args={[2.2, 0.02, 16, 120]} />
+          <meshBasicMaterial
+            color={C.aurora}
+            wireframe
+            transparent
+            opacity={0.4}
+            toneMapped={false}
+          />
+        </mesh>
+        <Sparkles
+          count={80}
+          scale={[6, 6, 6]}
+          size={2}
+          speed={0.4}
+          color={C.orchid}
+          opacity={0.7}
+        />
+      </Float>
+    </group>
+  );
+}
+
+/* --------------------------------------------------- station 04: blueprint */
 
 const CAPSULE_TONES = [C.aurora, C.orchid, C.champagne];
 
@@ -419,7 +564,17 @@ function Capsule({ x, kind, delay }: { x: number; kind: 0 | 1 | 2; delay: number
       <group position={[x, Math.sin(delay) * 0.4, -Math.abs(x) * 0.25]}>
         <group ref={shell}>
           <RoundedBox args={[1.7, 2.4, 1.7]} radius={0.28} smoothness={4}>
-            <meshPhysicalMaterial color={tone} metalness={0.2} roughness={0.08} transparent opacity={0.13} clearcoat={1} iridescence={0.35} envMapIntensity={1.6} depthWrite={false} />
+            <meshPhysicalMaterial
+              color={tone}
+              metalness={0.2}
+              roughness={0.08}
+              transparent
+              opacity={0.13}
+              clearcoat={1}
+              iridescence={0.35}
+              envMapIntensity={1.6}
+              depthWrite={false}
+            />
             <Edges color={tone} threshold={20} />
           </RoundedBox>
         </group>
@@ -462,7 +617,14 @@ function Blueprint() {
       {/* Scanning plane sweeping the blueprints */}
       <mesh ref={scan} rotation={[-Math.PI / 2, 0, 0]}>
         <planeGeometry args={[8, 3]} />
-        <meshBasicMaterial color={C.aurora} transparent opacity={0.07} side={THREE.DoubleSide} depthWrite={false} toneMapped={false} />
+        <meshBasicMaterial
+          color={C.aurora}
+          transparent
+          opacity={0.07}
+          side={THREE.DoubleSide}
+          depthWrite={false}
+          toneMapped={false}
+        />
       </mesh>
     </group>
   );
@@ -542,7 +704,14 @@ function LabBlob() {
         </mesh>
       </Float>
       <points ref={halo} geometry={haloGeo}>
-        <pointsMaterial vertexColors size={0.04} sizeAttenuation transparent opacity={0.9} toneMapped={false} />
+        <pointsMaterial
+          vertexColors
+          size={0.04}
+          sizeAttenuation
+          transparent
+          opacity={0.9}
+          toneMapped={false}
+        />
       </points>
       <Sparkle position={[2.4, 1.8, 0]} size={0.7} color={C.aurora} />
     </group>
@@ -558,11 +727,12 @@ function Beacon() {
   useFrame(({ clock }) => {
     const t = clock.elapsedTime;
     if (outer.current) outer.current.rotation.z = t * 0.2;
-    if (inner.current) inner.current.rotation.set(Math.sin(t * 0.6) * 0.4, Math.cos(t * 0.5) * 0.4, 0);
+    if (inner.current)
+      inner.current.rotation.set(Math.sin(t * 0.6) * 0.4, Math.cos(t * 0.5) * 0.4, 0);
     const since = labState.pulseAt > 0 ? (performance.now() - labState.pulseAt) / 1000 : 99;
     const boost = since < 2.5 ? 1 - since / 2.5 : 0;
     pulses.current?.children.forEach((child, i) => {
-      const phase = ((t * (0.35 + boost) + i / 4) % 1 + 1) % 1;
+      const phase = (((t * (0.35 + boost) + i / 4) % 1) + 1) % 1;
       const m = child as THREE.Mesh;
       m.scale.setScalar(0.4 + phase * (2.4 + boost * 2));
       (m.material as THREE.MeshBasicMaterial).opacity = (1 - phase) * (0.5 + boost * 0.5);
@@ -578,7 +748,12 @@ function Beacon() {
           </mesh>
           <mesh ref={inner}>
             <torusGeometry args={[1.65, 0.03, 12, 220]} />
-            <meshStandardMaterial color={C.aurora} emissive={C.aurora} emissiveIntensity={2} toneMapped={false} />
+            <meshStandardMaterial
+              color={C.aurora}
+              emissive={C.aurora}
+              emissiveIntensity={2}
+              toneMapped={false}
+            />
           </mesh>
           <mesh>
             <circleGeometry args={[1.62, 96]} />
@@ -588,7 +763,13 @@ function Beacon() {
             {Array.from({ length: 4 }).map((_, i) => (
               <mesh key={i}>
                 <ringGeometry args={[0.98, 1, 128]} />
-                <meshBasicMaterial color={i % 2 ? C.rose : C.aurora} transparent opacity={0.4} side={THREE.DoubleSide} toneMapped={false} />
+                <meshBasicMaterial
+                  color={i % 2 ? C.rose : C.aurora}
+                  transparent
+                  opacity={0.4}
+                  side={THREE.DoubleSide}
+                  toneMapped={false}
+                />
               </mesh>
             ))}
           </group>
@@ -659,28 +840,113 @@ function Launchpad() {
           {seatPts.map((p, i) => (
             <mesh key={i} position={p}>
               <dodecahedronGeometry args={[0.2, 0]} />
-              <meshBasicMaterial color={i % 2 ? C.aurora : C.pearl} wireframe transparent opacity={0.45} toneMapped={false} />
+              <meshBasicMaterial
+                color={i % 2 ? C.aurora : C.pearl}
+                wireframe
+                transparent
+                opacity={0.45}
+                toneMapped={false}
+              />
             </mesh>
           ))}
           {seatPts.map((p, i) => (
-            <Line key={`l${i}`} points={[p, new THREE.Vector3(0, 0, 0)]} color={C.champagne} lineWidth={0.6} transparent opacity={0.18} />
+            <Line
+              key={`l${i}`}
+              points={[p, new THREE.Vector3(0, 0, 0)]}
+              color={C.champagne}
+              lineWidth={0.6}
+              transparent
+              opacity={0.18}
+            />
           ))}
           {/* Services core */}
           <mesh ref={seat}>
             <icosahedronGeometry args={[0.55, 2]} />
-            <meshPhysicalMaterial color={C.iris} {...IRIDESCENT} roughness={0.18} emissive={C.rose} emissiveIntensity={0.55} />
+            <meshPhysicalMaterial
+              color={C.iris}
+              {...IRIDESCENT}
+              roughness={0.18}
+              emissive={C.rose}
+              emissiveIntensity={0.55}
+            />
           </mesh>
           <mesh ref={ring}>
             <torusGeometry args={[0.95, 0.025, 12, 160]} />
-            <meshStandardMaterial color={C.champagne} emissive={C.champagne} emissiveIntensity={2.2} toneMapped={false} />
+            <meshStandardMaterial
+              color={C.champagne}
+              emissive={C.champagne}
+              emissiveIntensity={2.2}
+              toneMapped={false}
+            />
           </mesh>
           <points ref={plume} geometry={plumeGeo}>
-            <pointsMaterial color={C.champagne} size={0.05} sizeAttenuation transparent opacity={0.85} toneMapped={false} />
+            <pointsMaterial
+              color={C.champagne}
+              size={0.05}
+              sizeAttenuation
+              transparent
+              opacity={0.85}
+              toneMapped={false}
+            />
           </points>
           <Sparkle position={[1.6, 1.5, 0.4]} size={0.6} color={C.pearl} />
         </group>
       </Float>
-      <Sparkles count={90} scale={[8, 6, 6]} size={2.2} speed={0.45} color={C.aurora} opacity={0.6} />
+      <Sparkles
+        count={90}
+        scale={[8, 6, 6]}
+        size={2.2}
+        speed={0.45}
+        color={C.aurora}
+        opacity={0.6}
+      />
+    </group>
+  );
+}
+
+/* --------------------------------------------- station 07: partnerships */
+
+function AllianceNexus() {
+  const g1 = useRef<THREE.Group>(null);
+  const g2 = useRef<THREE.Group>(null);
+  useFrame(({ clock }) => {
+    const t = clock.elapsedTime;
+    if (g1.current) g1.current.rotation.set(t * 0.35, t * 0.25, 0);
+    if (g2.current) g2.current.rotation.set(-t * 0.3, 0, t * 0.4);
+  });
+  return (
+    <group position={getStation("partnerships").position}>
+      <Float speed={1.2} rotationIntensity={0.25} floatIntensity={0.6}>
+        <group ref={g1}>
+          <mesh>
+            <torusGeometry args={[1.4, 0.07, 24, 180]} />
+            <meshPhysicalMaterial color={C.iris} {...IRIDESCENT} roughness={0.15} />
+          </mesh>
+        </group>
+        <group ref={g2}>
+          <mesh>
+            <torusGeometry args={[1.4, 0.07, 24, 180]} />
+            <meshPhysicalMaterial color={C.pearl} {...IRIDESCENT} roughness={0.15} />
+          </mesh>
+        </group>
+        <mesh>
+          <icosahedronGeometry args={[0.45, 1]} />
+          <meshStandardMaterial
+            color={C.champagne}
+            emissive={C.champagne}
+            emissiveIntensity={2.5}
+            toneMapped={false}
+          />
+        </mesh>
+        <Sparkles
+          count={100}
+          scale={[7, 7, 7]}
+          size={2.4}
+          speed={0.5}
+          color={C.champagne}
+          opacity={0.75}
+        />
+      </Float>
     </group>
   );
 }
@@ -715,7 +981,12 @@ function DataStream() {
     for (let i = 0; i < N; i++) {
       const u = (((i / N + t * 0.012) % 1) + 1) % 1;
       curve.getPointAt(u, tmp);
-      attr.setXYZ(i, tmp.x + Math.sin(i * 3.1 + t) * 0.18, tmp.y + Math.cos(i * 1.7 + t) * 0.18, tmp.z);
+      attr.setXYZ(
+        i,
+        tmp.x + Math.sin(i * 3.1 + t) * 0.18,
+        tmp.y + Math.cos(i * 1.7 + t) * 0.18,
+        tmp.z,
+      );
     }
     attr.needsUpdate = true;
   });
@@ -724,7 +995,14 @@ function DataStream() {
     <group>
       <Line points={linePts} vertexColors={lineColors} lineWidth={1.2} transparent opacity={0.5} />
       <points geometry={geo}>
-        <pointsMaterial color={C.champagne} size={0.08} sizeAttenuation transparent opacity={0.9} toneMapped={false} />
+        <pointsMaterial
+          color={C.champagne}
+          size={0.08}
+          sizeAttenuation
+          transparent
+          opacity={0.9}
+          toneMapped={false}
+        />
       </points>
     </group>
   );
@@ -761,7 +1039,12 @@ export default function Universe({ stationId }: { stationId: StationId }) {
         dpr={[1, 1.75]}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
         // Start far out in space so the first visit opens with a fly-in.
-        camera={{ fov: 60, near: 0.1, far: 400, position: [start[0] + 6, start[1] + 8, start[2] + 46] }}
+        camera={{
+          fov: 60,
+          near: 0.1,
+          far: 400,
+          position: [start[0] + 6, start[1] + 8, start[2] + 46],
+        }}
         fallback={null}
         onCreated={({ gl }) => {
           gl.toneMapping = THREE.ACESFilmicToneMapping;
@@ -778,10 +1061,34 @@ export default function Universe({ stationId }: { stationId: StationId }) {
             either side, indigo floor bounce and a lavender ring for the chrome highlights. */}
         <Environment resolution={256} frames={1}>
           <color attach="background" args={[C.void]} />
-          <Lightformer intensity={3} color={C.pearl} position={[0, 7, 0]} rotation-x={Math.PI / 2} scale={[14, 4, 1]} />
-          <Lightformer intensity={2.6} color={C.iris} position={[-7, 1, 0]} rotation-y={Math.PI / 2} scale={[20, 1.2, 1]} />
-          <Lightformer intensity={2.2} color={C.aurora} position={[7, 0, -1]} rotation-y={-Math.PI / 2} scale={[20, 1.6, 1]} />
-          <Lightformer intensity={1.4} color={C.rose} position={[0, -6, 0]} rotation-x={-Math.PI / 2} scale={[12, 3, 1]} />
+          <Lightformer
+            intensity={3}
+            color={C.pearl}
+            position={[0, 7, 0]}
+            rotation-x={Math.PI / 2}
+            scale={[14, 4, 1]}
+          />
+          <Lightformer
+            intensity={2.6}
+            color={C.iris}
+            position={[-7, 1, 0]}
+            rotation-y={Math.PI / 2}
+            scale={[20, 1.2, 1]}
+          />
+          <Lightformer
+            intensity={2.2}
+            color={C.aurora}
+            position={[7, 0, -1]}
+            rotation-y={-Math.PI / 2}
+            scale={[20, 1.6, 1]}
+          />
+          <Lightformer
+            intensity={1.4}
+            color={C.rose}
+            position={[0, -6, 0]}
+            rotation-x={-Math.PI / 2}
+            scale={[12, 3, 1]}
+          />
           <Lightformer form="ring" intensity={2} color={C.orchid} position={[0, 0, 9]} scale={4} />
           <Lightformer intensity={1} color={C.champagne} position={[0, 2, -9]} scale={[10, 2, 1]} />
         </Environment>
@@ -792,13 +1099,14 @@ export default function Universe({ stationId }: { stationId: StationId }) {
         <DataStream />
         <OrbitalCore />
         <OriginSeed />
+        <ServicesMatrix />
         <Blueprint />
         <LabBlob />
         <Launchpad />
+        <AllianceNexus />
         <Beacon />
         <CameraRig stationId={stationId} />
         <ReadySignal onReady={() => setReady(true)} />
-
       </Canvas>
     </div>
   );

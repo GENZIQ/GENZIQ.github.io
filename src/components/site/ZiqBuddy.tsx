@@ -119,7 +119,13 @@ export function ZiqBuddy() {
         lookUntil.current = now + 500;
       }
 
-      const m = scrollMilestone(y, window.innerHeight, document.documentElement.scrollHeight, seen, maxY);
+      const m = scrollMilestone(
+        y,
+        window.innerHeight,
+        document.documentElement.scrollHeight,
+        seen,
+        maxY,
+      );
       if (m) {
         seen.add(m);
         if (m === "half") react("star", "hop", "Halfway there ✧ keep going!");
@@ -140,11 +146,14 @@ export function ZiqBuddy() {
   useEffect(() => {
     let t = 0;
     const loop = () => {
-      t = window.setTimeout(() => {
-        setBlink(true);
-        window.setTimeout(() => setBlink(false), 150);
-        loop();
-      }, 2200 + Math.random() * 3200);
+      t = window.setTimeout(
+        () => {
+          setBlink(true);
+          window.setTimeout(() => setBlink(false), 150);
+          loop();
+        },
+        2200 + Math.random() * 3200,
+      );
     };
     loop();
     const ts = timers.current;
@@ -158,7 +167,11 @@ export function ZiqBuddy() {
 
   const releaseSparkles = () => {
     caught.current = 0;
-    const batch = [0, 1, 2].map((i) => ({ id: ++floaterId.current, x: -54 + i * 30 + Math.random() * 10, delay: i * 120 }));
+    const batch = [0, 1, 2].map((i) => ({
+      id: ++floaterId.current,
+      x: -54 + i * 30 + Math.random() * 10,
+      delay: i * 120,
+    }));
     setFloaters((f) => [...f, ...batch]);
   };
 
@@ -181,7 +194,12 @@ export function ZiqBuddy() {
       return;
     }
     if (r) spawnBurst(r.left + r.width / 2, r.top + r.height / 3, 10);
-    react("happy", "squish", BOOP_LINES[boopCount.current++ % BOOP_LINES.length] ?? "Boop! ♡", 1000);
+    react(
+      "happy",
+      "squish",
+      BOOP_LINES[boopCount.current++ % BOOP_LINES.length] ?? "Boop! ♡",
+      1000,
+    );
     if (boopCount.current % 3 === 0) releaseSparkles();
   };
 
@@ -200,7 +218,11 @@ export function ZiqBuddy() {
   return (
     <div className="fixed bottom-4 right-4 z-50 flex items-end gap-2 md:bottom-6 md:right-6">
       {line && (
-        <div key={line.key} role="status" className="ziq-bubble glass-strong max-w-[13rem] rounded-2xl rounded-br-md px-4 py-2.5 text-xs leading-snug text-foreground shadow-glow">
+        <div
+          key={line.key}
+          role="status"
+          className="ziq-bubble glass-strong max-w-[13rem] rounded-2xl rounded-br-md px-4 py-2.5 text-xs leading-snug text-foreground shadow-glow"
+        >
           {line.text}
         </div>
       )}
@@ -234,27 +256,70 @@ export function ZiqBuddy() {
                 <stop offset="100%" style={{ stopColor: "var(--rose)" }} />
               </radialGradient>
             </defs>
-            <ellipse className="ziq-shadow" cx="50" cy="96" rx="22" ry="3.5" style={{ fill: "var(--primary)" }} opacity="0.35" />
+            <ellipse
+              className="ziq-shadow"
+              cx="50"
+              cy="96"
+              rx="22"
+              ry="3.5"
+              style={{ fill: "var(--primary)" }}
+              opacity="0.35"
+            />
             <g key={anim.key} className={`ziq-act ziq-act-${anim.name}`}>
               <g className="ziq-body">
-                <path d="M50 24 Q48 16 52 10" fill="none" strokeWidth="2.5" strokeLinecap="round" style={{ stroke: "var(--primary-glow)" }} />
+                <path
+                  d="M50 24 Q48 16 52 10"
+                  fill="none"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  style={{ stroke: "var(--primary-glow)" }}
+                />
                 {/* generous invisible hit area so the antenna sparkle is easy to tap */}
                 <g className="ziq-star">
                   <circle cx="52" cy="9" r="11" fill="transparent" />
-                  <path d="M52 1 L54 7 L60 9 L54 11 L52 17 L50 11 L44 9 L50 7 Z" style={{ fill: "var(--chrome)" }} />
+                  <path
+                    d="M52 1 L54 7 L60 9 L54 11 L52 17 L50 11 L44 9 L50 7 Z"
+                    style={{ fill: "var(--chrome)" }}
+                  />
                 </g>
                 <circle cx="50" cy="56" r="33" fill="url(#ziq-body)" />
-                <ellipse cx="38" cy="40" rx="10" ry="6" transform="rotate(-25 38 40)" style={{ fill: "var(--chrome)" }} opacity="0.55" />
-                <ellipse className="ziq-cheek" cx="31" cy="66" rx="6" ry="3.5" style={{ fill: "var(--blush)" }} />
-                <ellipse className="ziq-cheek" cx="69" cy="66" rx="6" ry="3.5" style={{ fill: "var(--blush)" }} />
+                <ellipse
+                  cx="38"
+                  cy="40"
+                  rx="10"
+                  ry="6"
+                  transform="rotate(-25 38 40)"
+                  style={{ fill: "var(--chrome)" }}
+                  opacity="0.55"
+                />
+                <ellipse
+                  className="ziq-cheek"
+                  cx="31"
+                  cy="66"
+                  rx="6"
+                  ry="3.5"
+                  style={{ fill: "var(--blush)" }}
+                />
+                <ellipse
+                  className="ziq-cheek"
+                  cx="69"
+                  cy="66"
+                  rx="6"
+                  ry="3.5"
+                  style={{ fill: "var(--blush)" }}
+                />
                 <g ref={eyes} className="ziq-eyes">
                   <Eyes mood={mood} closed={closed} />
                 </g>
                 <Mouth mood={mood} />
                 {mood === "sleepy" && (
                   <g style={{ fill: "var(--chrome)" }} className="font-display">
-                    <text className="ziq-z" x="76" y="30" fontSize="11">z</text>
-                    <text className="ziq-z ziq-z2" x="84" y="20" fontSize="8">z</text>
+                    <text className="ziq-z" x="76" y="30" fontSize="11">
+                      z
+                    </text>
+                    <text className="ziq-z ziq-z2" x="84" y="20" fontSize="8">
+                      z
+                    </text>
                   </g>
                 )}
               </g>
@@ -306,8 +371,14 @@ function Eyes({ mood, closed }: { mood: ZiqMood; closed: boolean }) {
     case "love":
       return (
         <g className="ziq-pulse">
-          <path d={heart(40, 56)} style={{ fill: "var(--blush)", stroke: "var(--background)", strokeWidth: 1.4 }} />
-          <path d={heart(60, 56)} style={{ fill: "var(--blush)", stroke: "var(--background)", strokeWidth: 1.4 }} />
+          <path
+            d={heart(40, 56)}
+            style={{ fill: "var(--blush)", stroke: "var(--background)", strokeWidth: 1.4 }}
+          />
+          <path
+            d={heart(60, 56)}
+            style={{ fill: "var(--blush)", stroke: "var(--background)", strokeWidth: 1.4 }}
+          />
         </g>
       );
     case "star":
@@ -362,6 +433,22 @@ function Mouth({ mood }: { mood: ZiqMood }) {
   if (mood === "wow") return <ellipse cx="50" cy="69" rx="3.6" ry="4.6" style={INK} />;
   if (mood === "sleepy") return <circle cx="50" cy="68" r="2" style={INK} />;
   if (mood === "dizzy")
-    return <path d="M43 68 Q46.5 64.5 50 68 Q53.5 71.5 57 68" fill="none" strokeWidth="2.2" strokeLinecap="round" style={INK_STROKE} />;
-  return <path d="M45.5 67 Q50 71 54.5 67" fill="none" strokeWidth="2.2" strokeLinecap="round" style={INK_STROKE} />;
+    return (
+      <path
+        d="M43 68 Q46.5 64.5 50 68 Q53.5 71.5 57 68"
+        fill="none"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+        style={INK_STROKE}
+      />
+    );
+  return (
+    <path
+      d="M45.5 67 Q50 71 54.5 67"
+      fill="none"
+      strokeWidth="2.2"
+      strokeLinecap="round"
+      style={INK_STROKE}
+    />
+  );
 }

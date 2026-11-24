@@ -24,21 +24,17 @@ npm run preview
 ## Deployment
 
 This repository deploys a prerendered static version to GitHub Pages from
-`main` using `.github/workflows/deploy-pages.yml`. The repository is named
-`GENZIQ.github.io`, so the default free site URL is
-[https://genziq.github.io](https://genziq.github.io).
-
-In repository **Settings → Pages**, set the build and deployment source to
-**GitHub Actions** and clear any custom domain to use the default `github.io`
-URL. Pushes to `main` trigger deployments; the workflow can also be started
-manually from the Actions tab.
+`main` using `.github/workflows/deploy-pages.yml`. The official domain is
+[https://genziq.in](https://genziq.in).
 
 ## Mission
 
-We aim to build technology that is innovative, useful, trustworthy, and aligned
-with real human needs.
+We aim to build practical AI systems and software solutions that are innovative,
+useful, trustworthy, and aligned with real human needs.
 
 ## Contact
 
+- Website: [https://genziq.in](https://genziq.in)
 - Organization: [GENZIQ on GitHub](https://github.com/GENZIQ)
-- Email: anushree1888@gmail.com
+- LinkedIn: [GENZIQ on LinkedIn](https://www.linkedin.com/company/144165173/)
+- Email: genziq.team@gmail.com

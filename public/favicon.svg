@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <radialGradient id="gz-bg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0a0a1f"/>
+      <stop offset="100%" stop-color="#03040a"/>
+    </radialGradient>
+    <linearGradient id="gz-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#9d9aff"/>
+      <stop offset="50%" stop-color="#6e69f3"/>
+      <stop offset="100%" stop-color="#7250ba"/>
+    </linearGradient>
+    <linearGradient id="gz-spark" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#b6b4ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#gz-bg)" stroke="#272555" stroke-width="1.5"/>
+  <!-- Orbital Ring -->
+  <circle cx="32" cy="30" r="17" fill="none" stroke="url(#gz-glow)" stroke-width="3" stroke-linecap="round" stroke-dasharray="88 20"/>
+  <!-- Core Nucleus -->
+  <circle cx="32" cy="30" r="6" fill="url(#gz-spark)"/>
+  <!-- Tail Accent (Q Spark) -->
+  <path d="M42 40 L50 49" stroke="url(#gz-spark)" stroke-width="3.5" stroke-linecap="round"/>
+  <!-- Quantum Dot -->
+  <circle cx="49" cy="48" r="1.5" fill="#ffffff"/>
+</svg>

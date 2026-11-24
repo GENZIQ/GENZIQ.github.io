@@ -8,7 +8,11 @@ export function StationHud() {
   const station = stationForPath(pathname);
 
   return (
-    <div key={station.id} className="pointer-events-none fixed inset-0 z-40 overflow-hidden" aria-hidden>
+    <div
+      key={station.id}
+      className="pointer-events-none fixed inset-0 z-40 overflow-hidden"
+      aria-hidden
+    >
       {[18, 34, 52, 67, 81].map((top, i) => (
         <span
           key={top}

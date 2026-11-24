@@ -19,16 +19,25 @@ export function PageIntro({
       <div className="mx-auto w-full max-w-6xl">
         <div className="page-intro-copy max-w-xl">
           <p className="eyebrow animate-rise">{eyebrow}</p>
-          <h1 className="animate-rise mt-5 text-4xl font-semibold leading-[1.05] sm:text-5xl md:text-6xl" style={{ animationDelay: "80ms" }}>
+          <h1
+            className="animate-rise mt-5 text-4xl font-semibold leading-[1.05] sm:text-5xl md:text-6xl"
+            style={{ animationDelay: "80ms" }}
+          >
             {title}
           </h1>
           {children && (
-            <div className="animate-rise mt-6 text-base leading-relaxed text-muted-foreground md:text-lg" style={{ animationDelay: "160ms" }}>
+            <div
+              className="animate-rise mt-6 text-base leading-relaxed text-muted-foreground md:text-lg"
+              style={{ animationDelay: "160ms" }}
+            >
               {children}
             </div>
           )}
           {actions && (
-            <div className="animate-rise mt-9 flex flex-wrap gap-3" style={{ animationDelay: "240ms" }}>
+            <div
+              className="animate-rise mt-9 flex flex-wrap gap-3"
+              style={{ animationDelay: "240ms" }}
+            >
               {actions}
             </div>
           )}

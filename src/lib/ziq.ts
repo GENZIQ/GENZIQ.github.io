@@ -1,6 +1,7 @@
 // Pure helpers for Ziq, the decorative buddy: what it does on each page and while scrolling.
 export type ZiqMood = "idle" | "happy" | "wink" | "love" | "star" | "wow" | "dizzy" | "sleepy";
-export type ZiqAnim = "none" | "hop" | "spin" | "flip" | "shake" | "wave" | "squish" | "dizzy" | "enter";
+export type ZiqAnim =
+  "none" | "hop" | "spin" | "flip" | "shake" | "wave" | "squish" | "dizzy" | "enter";
 
 export interface ZiqReaction {
   mood: ZiqMood;
@@ -9,20 +10,46 @@ export interface ZiqReaction {
 }
 
 export const PAGE_REACTIONS: Record<string, ZiqReaction> = {
-  "/": { mood: "happy", anim: "enter", line: "Hi, I'm Ziq ✦ welcome to GENZIQ!" },
+  "/": { mood: "happy", anim: "enter", line: "Hi, I'm Ziq ✦ Welcome to GENZIQ!" },
   "/about": { mood: "wink", anim: "flip", line: "This is where it all began ✦" },
-  "/products": { mood: "star", anim: "spin", line: "Ideas brewing here… all still concepts!" },
-  "/innovation": { mood: "wow", anim: "shake", line: "Psst — drag the sliders and squish the blob!" },
-  "/careers": { mood: "happy", anim: "wave", line: "No openings right now, but say hi anyway ♡" },
+  "/services": { mood: "star", anim: "hop", line: "Explore what GENZIQ can build for you ✦" },
+  "/products": {
+    mood: "star",
+    anim: "spin",
+    line: "Check out our active projects and prototypes ✦",
+  },
+  "/innovation": {
+    mood: "wow",
+    anim: "shake",
+    line: "Psst — drag the sliders and squish the blob!",
+  },
+  "/careers": { mood: "happy", anim: "wave", line: "We're hiring! Join our team ♡" },
+  "/partnerships": {
+    mood: "love",
+    anim: "flip",
+    line: "Let's build something remarkable together ♡",
+  },
   "/contact": { mood: "love", anim: "hop", line: "Even a one-letter hello works ♡" },
+  "/privacy": { mood: "idle", anim: "none", line: "We take your privacy seriously ✦" },
+  "/terms": { mood: "idle", anim: "none", line: "Transparent, honest terms ✦" },
 };
-const NEW_PAGE: ZiqReaction = { mood: "wow", anim: "hop", line: "Ooh, a new corner of the universe ✦" };
+const NEW_PAGE: ZiqReaction = {
+  mood: "wow",
+  anim: "hop",
+  line: "Ooh, a new corner of the universe ✦",
+};
 
 export function reactionForPath(path: string): ZiqReaction {
   return PAGE_REACTIONS[path] ?? NEW_PAGE;
 }
 
-export const BOOP_LINES = ["Boop! ♡", "Hehe, that tickles ✦", "Infinite possibilities!", "You found me ♡", "Wheee ✧"];
+export const BOOP_LINES = [
+  "Boop! ♡",
+  "Hehe, that tickles ✦",
+  "Infinite possibilities!",
+  "You found me ♡",
+  "Wheee ✧",
+];
 export const CATCH_LINES = ["Got one! ✦", "Two! You're quick ✧", "All three! Sparkle master ♡"];
 
 export type ScrollMilestone = "half" | "end" | "top";

@@ -24,7 +24,12 @@ export function TiltCard({ children, className }: { children: ReactNode; classNa
 
   return (
     <div className="r3d h-full">
-      <div ref={ref} onPointerMove={onMove} onPointerLeave={onLeave} className={cn("glass-panel tilt-card card-spotlight h-full", className)}>
+      <div
+        ref={ref}
+        onPointerMove={onMove}
+        onPointerLeave={onLeave}
+        className={cn("glass-panel tilt-card card-spotlight h-full", className)}
+      >
         {children}
       </div>
     </div>
